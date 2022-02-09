@@ -1,6 +1,12 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { StatusBar } from "expo-status-bar";
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import {
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+  RefreshControl,
+} from "react-native";
 
 export default function App() {
   const obj = [
@@ -12,10 +18,23 @@ export default function App() {
     { id: 6, name: "Klaus", age: 35 },
   ];
   const [family, setFamily] = useState(obj);
+  // refreshControll
+  const [refreshing, setRefreshing] = useState(false);
+  const wait = (timeout) => {
+    return new Promise((resolve) => setTimeout(resolve, timeout));
+  };
 
+  const onRefresh = () => {
+    setRefreshing(true);
+    wait(2000).then(() => setRefreshing(false));
+  };
   return (
     <View style={styles.container}>
-      <ScrollView>
+      <ScrollView
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
+      >
         {family.map((member) => {
           return (
             <View key={member.id} style={styles.list}>
