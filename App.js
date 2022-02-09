@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "stretch",
-    justifyContent: "flex-start",
+    marginTop: 20,
   },
   list: {
     backgroundColor: "deepskyblue",
