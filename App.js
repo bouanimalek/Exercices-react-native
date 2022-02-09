@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
 
 export default function App() {
   const obj = [
@@ -15,15 +15,17 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      {family.map((member) => {
-        return (
-          <View key={member.id} style={styles.list}>
-            <Text style={styles.textList}>
-              Nom: {member.name} | Age: {member.age}
-            </Text>
-          </View>
-        );
-      })}
+      <ScrollView>
+        {family.map((member) => {
+          return (
+            <View key={member.id} style={styles.list}>
+              <Text style={styles.textList}>
+                Nom: {member.name} | Age: {member.age}
+              </Text>
+            </View>
+          );
+        })}
+      </ScrollView>
     </View>
   );
 }
@@ -39,11 +41,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     margin: 10,
-    flex: 1,
   },
   textList: {
     color: "#fff",
     padding: 12,
-    fontSize: 25,
+    fontSize: 40,
   },
 });
