@@ -11,8 +11,38 @@ export default function App() {
     { id: 5, name: "Roger", age: 1020 },
     { id: 6, name: "Klaus", age: 35 },
   ];
+  const [family, setFamily] = useState(obj);
 
-  return <View style={styles.container}></View>;
+  return (
+    <View style={styles.container}>
+      {family.map((member) => {
+        return (
+          <View key={member.id} style={styles.list}>
+            <Text style={styles.textList}>
+              Nom: {member.name} | Age: {member.age}
+            </Text>
+          </View>
+        );
+      })}
+    </View>
+  );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: "stretch",
+    justifyContent: "center",
+  },
+  list: {
+    backgroundColor: "deepskyblue",
+    justifyContent: "center",
+    alignItems: "center",
+    margin: 10,
+  },
+  textList: {
+    color: "#fff",
+    padding: 12,
+    fontSize: 25,
+  },
+});
