@@ -36,7 +36,11 @@ export default function App() {
     <View style={styles.container}>
       <ScrollView
         refreshControl={
-          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={onRefresh}
+            colors={["blue"]}
+          />
         }
       >
         {family.map((member) => {
