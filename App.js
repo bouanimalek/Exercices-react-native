@@ -39,6 +39,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     margin: 10,
+    flex: 1,
   },
   textList: {
     color: "#fff",
