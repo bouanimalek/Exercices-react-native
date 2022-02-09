@@ -3,12 +3,12 @@ import { StyleSheet, Text, View, FlatList } from "react-native";
 
 export default function App() {
   const obj = [
-    { id: 1, name: "Stan", age: 45 },
-    { id: 2, name: "Francine", age: 45 },
-    { id: 3, name: "Hayley", age: 18 },
-    { id: 4, name: "Steve", age: 14 },
-    { id: 5, name: "Roger", age: 1020 },
-    { id: 6, name: "Klaus", age: 35 },
+    { name: "Stan", age: 45 },
+    { name: "Francine", age: 45 },
+    { name: "Hayley", age: 18 },
+    { name: "Steve", age: 14 },
+    { name: "Roger", age: 1020 },
+    { name: "Klaus", age: 35 },
   ];
   const [family, setFamily] = useState(obj);
 
@@ -26,7 +26,7 @@ export default function App() {
       <FlatList
         data={family}
         renderItem={renderItem}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item, index) => index.toString()}
       />
     </View>
   );
