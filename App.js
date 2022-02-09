@@ -12,6 +12,12 @@ export default function App() {
   ];
   const [family, setFamily] = useState(obj);
 
+  const [inverted, setInverted] = useState(false);
+
+  const onRefresh = () => {
+    setInverted(!inverted);
+  };
+
   const renderItem = ({ item }) => {
     return (
       <View style={styles.list}>
@@ -27,6 +33,10 @@ export default function App() {
         data={family}
         renderItem={renderItem}
         keyExtractor={(item, index) => index.toString()}
+        horizontal
+        refreshing={false}
+        onRefresh={onRefresh}
+        inverted={inverted}
       />
     </View>
   );
@@ -35,7 +45,6 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "stretch",
     marginTop: 20,
   },
   list: {
@@ -47,6 +56,6 @@ const styles = StyleSheet.create({
   textList: {
     color: "#fff",
     padding: 12,
-    fontSize: 40,
+    fontSize: 20,
   },
 });
