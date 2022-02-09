@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { StatusBar } from "expo-status-bar";
 import {
   ScrollView,
   StyleSheet,
   Text,
   View,
   RefreshControl,
+  Alert,
 } from "react-native";
 
 export default function App() {
@@ -20,13 +20,17 @@ export default function App() {
   const [family, setFamily] = useState(obj);
   // refreshControll
   const [refreshing, setRefreshing] = useState(false);
-  const wait = (timeout) => {
-    return new Promise((resolve) => setTimeout(resolve, timeout));
-  };
 
   const onRefresh = () => {
     setRefreshing(true);
-    wait(2000).then(() => setRefreshing(false));
+    Alert.alert("Info", "la liste a été rafraîchi!e", [
+      {
+        text: "Cancel",
+        onPress: () => console.warn("la liste a été rafraîchi!e"),
+        style: "cancel",
+      },
+    ]);
+    setRefreshing(false);
   };
   return (
     <View style={styles.container}>
