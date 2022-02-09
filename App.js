@@ -1,12 +1,5 @@
 import React, { useState } from "react";
-import {
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-  RefreshControl,
-  Alert,
-} from "react-native";
+import { StyleSheet, Text, View, FlatList } from "react-native";
 
 export default function App() {
   const obj = [
@@ -18,41 +11,23 @@ export default function App() {
     { id: 6, name: "Klaus", age: 35 },
   ];
   const [family, setFamily] = useState(obj);
-  // refreshControll
-  const [refreshing, setRefreshing] = useState(false);
 
-  const onRefresh = () => {
-    setRefreshing(true);
-    Alert.alert("Info", "la liste a été rafraîchi!e", [
-      {
-        text: "Cancel",
-        onPress: () => console.warn("la liste a été rafraîchi!e"),
-        style: "cancel",
-      },
-    ]);
-    setRefreshing(false);
+  const renderItem = ({ item }) => {
+    return (
+      <View style={styles.list}>
+        <Text style={styles.textList}>
+          Nom: {item.name} | Age: {item.age}
+        </Text>
+      </View>
+    );
   };
   return (
     <View style={styles.container}>
-      <ScrollView
-        refreshControl={
-          <RefreshControl
-            refreshing={refreshing}
-            onRefresh={onRefresh}
-            colors={["blue"]}
-          />
-        }
-      >
-        {family.map((member) => {
-          return (
-            <View key={member.id} style={styles.list}>
-              <Text style={styles.textList}>
-                Nom: {member.name} | Age: {member.age}
-              </Text>
-            </View>
-          );
-        })}
-      </ScrollView>
+      <FlatList
+        data={family}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id}
+      />
     </View>
   );
 }
